@@ -1,0 +1,192 @@
+.page-container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+.compose-card, .message-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.form-item {
+  margin-bottom: 16rpx;
+}
+
+.input {
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textarea {
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 120rpx;
+}
+
+.textarea-sm {
+  min-height: 80rpx;
+}
+
+.char-count {
+  text-align: right;
+  margin: 8rpx 0;
+}
+
+.char-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.placeholder {
+  color: #bbb;
+}
+
+.btn-primary {
+  background: #4CAF50;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  text-align: center;
+  margin-top: 16rpx;
+}
+
+.btn-sm {
+  padding: 12rpx 24rpx;
+  margin-top: 0;
+  display: inline-block;
+}
+
+.btn-disabled {
+  background: #a5d6a7;
+}
+
+.btn-text {
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.msg-header, .reply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.msg-nickname {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.msg-nickname.clickable {
+  color: #4CAF50;
+}
+
+.msg-time, .reply-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.msg-content, .reply-content {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.msg-actions {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 8rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  color: #4CAF50;
+}
+
+.delete-btn {
+  color: #F44336;
+}
+
+.replies-list {
+  background: #f9f9f9;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  margin-top: 16rpx;
+}
+
+.reply-item {
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.reply-item:last-child {
+  border-bottom: none;
+}
+
+.reply-nickname {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #555;
+}
+
+.reply-compose {
+  margin-top: 16rpx;
+  padding: 16rpx;
+  background: #f9f9f9;
+  border-radius: 8rpx;
+}
+
+.reply-to-label {
+  font-size: 26rpx;
+  color: #4CAF50;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.reply-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 12rpx;
+}
+
+.cancel-btn {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.loading-state, .empty-state, .no-more {
+  text-align: center;
+  padding: 60rpx 0;
+}
+
+.loading-text, .empty-text, .no-more-text {
+  font-size: 28rpx;
+  color: #bbb;
+}
+
+.messages-list {
+  margin-top: 0;
+}

@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/index/index",
+    "pages/add-bill/add-bill",
+    "pages/statistics/statistics",
+    "pages/group/group-list/group-list",
+    "pages/group/group-detail/group-detail",
+    "pages/group/add-group-bill/add-group-bill",
+    "pages/campus/campus",
+    "pages/profile/profile",
+    "pages/message-board/message-board",
+    "pages/user-wall/user-wall"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/group/group-list/group-list",
+        "text": "分账",
+        "iconPath": "assets/tab-group.png",
+        "selectedIconPath": "assets/tab-group-active.png"
+      },
+      {
+        "pagePath": "pages/campus/campus",
+        "text": "校园",
+        "iconPath": "assets/tab-campus.png",
+        "selectedIconPath": "assets/tab-campus-active.png"
+      },
+      {
+        "pagePath": "pages/message-board/message-board",
+        "text": "留言",
+        "iconPath": "assets/tab-message.png",
+        "selectedIconPath": "assets/tab-message-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab-profile.png",
+        "selectedIconPath": "assets/tab-profile-active.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "校园记账",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

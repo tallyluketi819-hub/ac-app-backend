@@ -1,0 +1,64 @@
+<view class="page-container">
+  <view class="compose-card">
+    <text class="card-title">给Ta留言</text>
+    <view wx:if="{{!currentUserId}}" class="form-item">
+      <input class="input" placeholder="你的昵称（必填）" placeholder-class="placeholder" value="{{inputNickname}}" bindinput="onNicknameInput" maxlength="20" />
+    </view>
+    <textarea class="textarea" placeholder="说点什么..." placeholder-class="placeholder" value="{{inputContent}}" bindinput="onContentInput" maxlength="500" auto-height />
+    <view class="char-count"><text class="char-text">{{inputContent.length}}/500</text></view>
+    <view class="btn-primary {{submitting ? 'btn-disabled' : ''}}" bindtap="submitMessage">
+      <text class="btn-text">{{submitting ? '发送中...' : '留言'}}</text>
+    </view>
+  </view>
+
+  <view class="messages-list">
+    <view wx:if="{{loading && messages.length === 0}}" class="loading-state">
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view wx:elif="{{messages.length === 0}}" class="empty-state">
+      <text class="empty-text">还没有留言，快来第一个留言吧</text>
+    </view>
+    <view wx:else>
+      <view class="message-item" wx:for="{{messages}}" wx:key="id">
+        <view class="msg-header">
+          <text class="msg-nickname">{{item.nickname}}</text>
+          <text class="msg-time">{{item.created_at.slice(0, 10)}}</text>
+        </view>
+        <text class="msg-content">{{item.content}}</text>
+        <view class="msg-actions">
+          <text class="action-btn" bindtap="startReply" data-id="{{item.id}}" data-nickname="{{item.nickname}}">回复</text>
+          <text wx:if="{{isOwner || (item.user_id && item.user_id === currentUserId)}}" class="action-btn delete-btn" bindtap="confirmDelete" data-id="{{item.id}}">删除</text>
+        </view>
+
+        <view wx:if="{{item.replies.length > 0}}" class="replies-list">
+          <view class="reply-item" wx:for="{{item.replies}}" wx:key="id" wx:for-item="reply">
+            <view class="reply-header">
+              <text class="reply-nickname">{{reply.nickname}}</text>
+              <text class="reply-time">{{reply.created_at.slice(0, 10)}}</text>
+            </view>
+            <text class="reply-content">{{reply.content}}</text>
+            <text wx:if="{{isOwner || (reply.user_id && reply.user_id === currentUserId)}}" class="action-btn delete-btn" bindtap="confirmDelete" data-id="{{reply.id}}">删除</text>
+          </view>
+        </view>
+
+        <view wx:if="{{replyingTo && replyingTo.id === item.id}}" class="reply-compose">
+          <text class="reply-to-label">回复 {{replyingTo.nickname}}：</text>
+          <view wx:if="{{!currentUserId}}" class="form-item">
+            <input class="input" placeholder="你的昵称（必填）" placeholder-class="placeholder" value="{{replyNickname}}" bindinput="onReplyNicknameInput" maxlength="20" />
+          </view>
+          <textarea class="textarea textarea-sm" placeholder="回复内容..." placeholder-class="placeholder" value="{{replyContent}}" bindinput="onReplyContentInput" maxlength="500" auto-height />
+          <view class="reply-actions">
+            <text class="cancel-btn" bindtap="cancelReply">取消</text>
+            <view class="btn-primary btn-sm {{replySubmitting ? 'btn-disabled' : ''}}" bindtap="submitReply">
+              <text class="btn-text">{{replySubmitting ? '回复中...' : '发送'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{!hasMore && messages.length > 0}}" class="no-more">
+        <text class="no-more-text">— 没有更多了 —</text>
+      </view>
+    </view>
+  </view>
+</view>

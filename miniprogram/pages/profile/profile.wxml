@@ -1,0 +1,131 @@
+<view class="page-container">
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:elif="{{userInfo}}">
+    <!-- Profile Header -->
+    <view class="profile-header">
+      <view class="avatar-container">
+        <view class="avatar-circle">
+          <text class="avatar-letter">{{userInfo.name[0]}}</text>
+        </view>
+      </view>
+      <text class="user-name">{{userInfo.name}}</text>
+      <view class="user-tags">
+        <view class="tag school-tag">
+          <text class="tag-text">🏫 {{userInfo.school || '未设置学校'}}</text>
+        </view>
+        <view class="tag grade-tag">
+          <text class="tag-text">📚 {{userInfo.grade || '未设置年级'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Stats -->
+    <view class="stats-cards">
+      <view class="stats-card">
+        <text class="stats-value">{{totalBills}}</text>
+        <text class="stats-label">累计账单</text>
+      </view>
+      <view class="stats-divider"></view>
+      <view class="stats-card">
+        <text class="stats-value expense-color">¥{{thisMonthExpense}}</text>
+        <text class="stats-label">本月支出</text>
+      </view>
+    </view>
+
+    <!-- Edit Mode -->
+    <view wx:if="{{editing}}" class="edit-card">
+      <text class="card-title">编辑信息</text>
+
+      <view class="edit-form-item">
+        <text class="edit-label">姓名</text>
+        <input
+          class="edit-input"
+          type="text"
+          value="{{editName}}"
+          bindinput="onEditNameInput"
+          placeholder="请输入姓名"
+          placeholder-class="edit-placeholder"
+          maxlength="20"
+        />
+      </view>
+      <view class="form-divider"></view>
+
+      <view class="edit-form-item">
+        <text class="edit-label">学校</text>
+        <input
+          class="edit-input"
+          type="text"
+          value="{{editSchool}}"
+          bindinput="onEditSchoolInput"
+          placeholder="请输入学校名称"
+          placeholder-class="edit-placeholder"
+          maxlength="50"
+        />
+      </view>
+      <view class="form-divider"></view>
+
+      <view class="edit-form-item">
+        <text class="edit-label">年级</text>
+        <picker
+          class="grade-picker"
+          mode="selector"
+          range="{{gradeOptions}}"
+          value="{{editGradeIndex}}"
+          bindchange="onEditGradeChange"
+        >
+          <view class="picker-row">
+            <text class="picker-val">{{editGrade}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="edit-actions">
+        <view class="edit-cancel" bindtap="cancelEdit">
+          <text class="cancel-text">取消</text>
+        </view>
+        <view class="edit-save" bindtap="saveProfile">
+          <text class="save-text">{{saving ? '保存中...' : '保存'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Menu Items -->
+    <view wx:else class="menu-card">
+      <view class="menu-item" bindtap="startEdit">
+        <text class="menu-icon">✏️</text>
+        <text class="menu-text">修改信息</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-divider"></view>
+      <view class="menu-item" bindtap="goToMyWall">
+        <text class="menu-icon">💬</text>
+        <text class="menu-text">我的留言墙</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-divider"></view>
+      <view class="menu-item" bindtap="onLogout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text logout-text">退出登录</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- Phone Display -->
+    <view class="info-card">
+      <view class="info-item">
+        <text class="info-label">📱 手机号</text>
+        <text class="info-value">{{userInfo.phone}}</text>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-item">
+        <text class="info-label">📅 注册时间</text>
+        <text class="info-value">{{userInfo.created_at.slice(0, 10)}}</text>
+      </view>
+    </view>
+  </block>
+</view>
