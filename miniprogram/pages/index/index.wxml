@@ -67,7 +67,7 @@
       <view
         wx:for="{{recentBills}}"
         wx:key="id"
-        class="bill-item"
+        class="bill-item bill-item-{{item.type}}"
         bindtap="onBillTap"
         data-bill="{{item}}"
       >

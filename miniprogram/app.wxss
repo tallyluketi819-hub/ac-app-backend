@@ -1,0 +1,238 @@
+/* Global Styles — Neon Ledger / Dark Minimal */
+page {
+  --bg-page: #0D0D0F;
+  --bg-card: #1A1A1F;
+  --bg-card-2: #22222A;
+  --text-primary: #F0F0F0;
+  --text-secondary: #888899;
+  --text-placeholder: #55556A;
+  --color-income: #00FF87;
+  --color-expense: #FF4757;
+  --color-accent: #7C6EFF;
+  --color-accent-glow: rgba(124, 110, 255, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-divider: rgba(255, 255, 255, 0.04);
+  --glow-income: rgba(0, 255, 135, 0.45);
+  --glow-expense: rgba(255, 71, 87, 0.4);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  box-sizing: border-box;
+}
+
+/* Reset */
+view, text, input, button, image {
+  box-sizing: border-box;
+}
+
+/* Page container */
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding-bottom: 160rpx;
+}
+
+/* Common card style */
+.card {
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid var(--border-subtle);
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+/* Amount (monospace) */
+.amount {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+.amount-hero { font-size: 72rpx; }
+.amount-normal { font-size: 34rpx; }
+
+/* Primary button — use <view> not <button> */
+.btn-primary {
+  background: linear-gradient(135deg, #8B7FFF 0%, #6B5EFF 100%);
+  border-radius: 16rpx;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 32rpx;
+  box-shadow: 0 8rpx 32rpx var(--color-accent-glow), 0 1rpx 0 rgba(255,255,255,0.1) inset;
+  animation: accentPulse 3.5s ease-in-out infinite;
+}
+
+.btn-primary.disabled {
+  opacity: 0.4;
+  animation: none;
+}
+
+/* Input field */
+.input-field {
+  background: var(--bg-card-2);
+  border-radius: 12rpx;
+  padding: 28rpx 24rpx;
+  color: var(--text-primary);
+  font-size: 30rpx;
+  border-bottom: 2rpx solid transparent;
+}
+
+.input-field.input-focused {
+  border-bottom-color: var(--color-accent);
+}
+
+/* Progress bars */
+.bar-fill-income { background: var(--color-income); border-radius: 8rpx; }
+.bar-fill-expense { background: var(--color-expense); border-radius: 8rpx; }
+.bar-fill-accent { background: var(--color-accent); border-radius: 8rpx; }
+
+/* Typography */
+.title { font-weight: 600; font-size: 32rpx; color: var(--text-primary); }
+.subtitle { font-size: 24rpx; color: var(--text-secondary); }
+
+/* Loading / Empty states */
+.loading-text, .empty-title {
+  color: var(--text-secondary);
+  font-size: 28rpx;
+}
+.empty-sub, .no-data-sub {
+  color: var(--text-placeholder);
+  font-size: 24rpx;
+}
+
+/* Text utilities */
+.text-income { color: var(--color-income); }
+.text-expense { color: var(--color-expense); }
+.text-accent { color: var(--color-accent); }
+.text-secondary { color: var(--text-secondary); }
+.text-bold { font-weight: bold; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Layout utilities */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-1 { flex: 1; }
+
+/* Spacing */
+.mt-10 { margin-top: 10rpx; }
+.mt-20 { margin-top: 20rpx; }
+.mt-30 { margin-top: 30rpx; }
+.mb-10 { margin-bottom: 10rpx; }
+.mb-20 { margin-bottom: 20rpx; }
+.p-20 { padding: 20rpx; }
+.px-30 { padding-left: 30rpx; padding-right: 30rpx; }
+
+/* Divider */
+.divider {
+  height: 1rpx;
+  background: var(--border-divider);
+  margin: 20rpx 0;
+}
+
+/* Badges */
+.badge-income {
+  background: rgba(0, 255, 135, 0.12);
+  color: var(--color-income);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+.badge-expense {
+  background: rgba(255, 71, 87, 0.12);
+  color: var(--color-expense);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40rpx;
+  color: var(--text-secondary);
+  font-size: 26rpx;
+}
+
+/* ============================================
+   Neon Ledger — Animations & Glow Utilities
+   ============================================ */
+
+@keyframes accentPulse {
+  0%, 100% {
+    box-shadow: 0 8rpx 32rpx var(--color-accent-glow), 0 1rpx 0 rgba(255,255,255,0.1) inset;
+  }
+  50% {
+    box-shadow: 0 10rpx 52rpx rgba(124, 110, 255, 0.65), 0 0 80rpx rgba(124, 110, 255, 0.2), 0 1rpx 0 rgba(255,255,255,0.1) inset;
+  }
+}
+
+@keyframes fabGlow {
+  0%, 100% {
+    box-shadow: 0 6rpx 24rpx var(--color-accent-glow);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8rpx 48rpx rgba(124, 110, 255, 0.7), 0 0 80rpx rgba(124, 110, 255, 0.25);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes shimmerPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Neon glow text utilities */
+.neon-income  { text-shadow: 0 0 18rpx var(--glow-income); }
+.neon-expense { text-shadow: 0 0 18rpx var(--glow-expense); }
+.neon-accent  { text-shadow: 0 0 18rpx var(--color-accent-glow); }
+
+/* Shimmer loading text */
+.shimmer { animation: shimmerPulse 1.6s ease-in-out infinite; }
+
+/* Fade in animation */
+.fade-slide-up { animation: fadeSlideUp 0.35s ease-out both; }

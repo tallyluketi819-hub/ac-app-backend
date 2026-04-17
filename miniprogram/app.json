@@ -14,9 +14,9 @@
     "pages/user-wall/user-wall"
   ],
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#4CAF50",
-    "backgroundColor": "#ffffff",
+    "color": "#555566",
+    "selectedColor": "#00FF87",
+    "backgroundColor": "#0D0D0F",
     "borderStyle": "black",
     "list": [
       {
@@ -53,7 +53,7 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarBackgroundColor": "#0D0D0F",
     "navigationBarTitleText": "校园记账",
     "navigationBarTextStyle": "white"
   },

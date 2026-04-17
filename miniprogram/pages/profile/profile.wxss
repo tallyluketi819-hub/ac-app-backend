@@ -12,7 +12,7 @@
 
 /* Profile Header */
 .profile-header {
-  background: var(--bg-card);
+  background: linear-gradient(180deg, #1E1E28 0%, #1A1A1F 100%);
   padding: 60rpx 40rpx 70rpx;
   display: flex;
   flex-direction: column;
@@ -97,6 +97,7 @@
   color: var(--color-income);
   font-family: 'Courier New', Courier, monospace;
   margin-bottom: 8rpx;
+  text-shadow: 0 0 14rpx var(--glow-income);
 }
 
 .stats-label {
@@ -115,7 +116,7 @@
 /* Edit Card */
 .edit-card {
   margin: 24rpx 30rpx 0;
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
   border-radius: 20rpx;
   padding: 30rpx;
   border: 1rpx solid var(--border-subtle);

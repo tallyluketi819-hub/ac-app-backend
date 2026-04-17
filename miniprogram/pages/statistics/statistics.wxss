@@ -27,6 +27,7 @@
   font-size: 52rpx;
   color: var(--color-accent);
   font-weight: 300;
+  text-shadow: 0 0 12rpx rgba(124, 110, 255, 0.4);
 }
 
 .month-label {
@@ -47,7 +48,7 @@
 
 .summary-card {
   flex: 1;
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
   border-radius: 16rpx;
   padding: 24rpx 16rpx;
   display: flex;
@@ -68,8 +69,8 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-.income-color { color: var(--color-income); }
-.expense-color { color: var(--color-expense); }
+.income-color { color: var(--color-income); text-shadow: 0 0 14rpx var(--glow-income); }
+.expense-color { color: var(--color-expense); text-shadow: 0 0 12rpx var(--glow-expense); }
 .net-color { color: var(--text-primary); }
 
 /* Tab Switch */
@@ -114,7 +115,7 @@
 /* Chart Card */
 .chart-card {
   margin: 0 30rpx 20rpx;
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
   border-radius: 20rpx;
   padding: 30rpx;
   border: 1rpx solid var(--border-subtle);
@@ -168,7 +169,7 @@
 /* Category List Card */
 .category-list-card {
   margin: 0 30rpx;
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
   border-radius: 20rpx;
   padding: 30rpx;
   border: 1rpx solid var(--border-subtle);

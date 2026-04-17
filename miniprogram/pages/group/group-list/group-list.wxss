@@ -54,7 +54,7 @@
 }
 
 .group-card {
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #1E1E26 0%, #1A1A1F 100%);
   border-radius: 20rpx;
   padding: 30rpx;
   margin-bottom: 20rpx;
@@ -112,6 +112,7 @@
   font-weight: bold;
   color: var(--color-income);
   font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 12rpx var(--glow-income);
 }
 
 .balance-owe {
@@ -119,6 +120,7 @@
   font-weight: bold;
   color: var(--color-expense);
   font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 10rpx var(--glow-expense);
 }
 
 .balance-settled {
