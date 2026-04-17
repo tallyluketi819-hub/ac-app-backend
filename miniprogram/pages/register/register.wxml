@@ -1,0 +1,104 @@
+<view class="register-container">
+  <!-- Header -->
+  <view class="header-area">
+    <view class="back-btn" bindtap="goToLogin">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-content">
+      <text class="header-title">创建账号</text>
+      <text class="header-subtitle">加入校园记账，轻松管理每一分钱</text>
+    </view>
+  </view>
+
+  <!-- Register Form -->
+  <view class="form-card">
+
+    <!-- Name -->
+    <view class="form-item">
+      <text class="item-label">姓名</text>
+      <input
+        class="item-input"
+        type="text"
+        placeholder="请输入您的姓名"
+        placeholder-class="input-placeholder"
+        value="{{name}}"
+        bindinput="onNameInput"
+      />
+    </view>
+    <view class="divider-line"></view>
+
+    <!-- Phone -->
+    <view class="form-item">
+      <text class="item-label">手机号</text>
+      <input
+        class="item-input"
+        type="number"
+        placeholder="请输入手机号（用于登录）"
+        placeholder-class="input-placeholder"
+        maxlength="11"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+    <view class="divider-line"></view>
+
+    <!-- Password -->
+    <view class="form-item">
+      <text class="item-label">密码</text>
+      <input
+        class="item-input"
+        type="{{showPassword ? 'text' : 'password'}}"
+        placeholder="至少6位密码"
+        placeholder-class="input-placeholder"
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+      <text class="toggle-pwd" bindtap="togglePassword">{{showPassword ? '隐藏' : '显示'}}</text>
+    </view>
+    <view class="divider-line"></view>
+
+    <!-- School -->
+    <view class="form-item">
+      <text class="item-label">学校</text>
+      <input
+        class="item-input"
+        type="text"
+        placeholder="请输入学校名称（可选）"
+        placeholder-class="input-placeholder"
+        value="{{school}}"
+        bindinput="onSchoolInput"
+      />
+    </view>
+    <view class="divider-line"></view>
+
+    <!-- Grade Picker -->
+    <view class="form-item">
+      <text class="item-label">年级</text>
+      <picker
+        class="grade-picker"
+        mode="selector"
+        range="{{gradeOptions}}"
+        value="{{gradeIndex}}"
+        bindchange="onGradeChange"
+      >
+        <view class="picker-value">
+          <text class="picker-text">{{grade}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <view
+      class="btn-primary {{loading ? 'disabled' : ''}}"
+      bindtap="onRegister"
+    >
+      {{loading ? '注册中...' : '立即注册'}}
+    </view>
+  </view>
+
+  <!-- Login Link -->
+  <view class="login-link" bindtap="goToLogin">
+    <text class="login-text">已有账号？</text>
+    <text class="login-action">立即登录</text>
+  </view>
+</view>

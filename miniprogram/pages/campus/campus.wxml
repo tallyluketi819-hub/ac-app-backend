@@ -1,0 +1,122 @@
+<view class="page-container">
+  <!-- School Header -->
+  <view class="school-header">
+    <view class="school-icon-wrap">
+      <text class="school-icon">🏫</text>
+    </view>
+    <view class="school-info">
+      <text class="school-name">{{school || '未设置学校'}}</text>
+      <text class="school-sub">校园消费画像 · {{currentMonthDisplay}}</text>
+    </view>
+    <view class="refresh-btn" bindtap="onRefresh">
+      <text class="refresh-icon">🔄</text>
+    </view>
+  </view>
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">📊 正在分析数据...</text>
+  </view>
+
+  <block wx:else>
+    <!-- Stats Overview -->
+    <view class="stats-row">
+      <view class="stat-card">
+        <text class="stat-icon-big">👥</text>
+        <text class="stat-value">{{userCount}}</text>
+        <text class="stat-label">同校用户</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-icon-big">💸</text>
+        <text class="stat-value">¥{{avgMonthlyExpense}}</text>
+        <text class="stat-label">校均月支出</text>
+      </view>
+    </view>
+
+    <!-- My Stats -->
+    <view wx:if="{{userStats}}" class="my-stats-card">
+      <text class="card-title">我的本月消费</text>
+      <view class="my-stats-row">
+        <view class="my-stat-item">
+          <text class="my-stat-label">收入</text>
+          <text class="my-stat-value income-color">¥{{userStats.total_income}}</text>
+        </view>
+        <view class="my-stat-item">
+          <text class="my-stat-label">支出</text>
+          <text class="my-stat-value expense-color">¥{{userStats.total_expense}}</text>
+        </view>
+        <view class="my-stat-item">
+          <text class="my-stat-label">结余</text>
+          <text class="my-stat-value">¥{{userStats.net}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Health Score -->
+    <view class="health-card">
+      <text class="card-title">消费健康评分</text>
+      <view class="health-score-area">
+        <view class="score-circle {{healthScore >= 80 ? 'score-good' : healthScore >= 60 ? 'score-ok' : 'score-bad'}}">
+          <text class="score-number">{{healthScore}}</text>
+          <text class="score-unit">分</text>
+        </view>
+        <view class="score-info">
+          <text class="score-label">综合评分</text>
+          <text class="score-feedback">{{healthFeedback}}</text>
+          <view class="score-bar-track">
+            <view class="score-bar-fill {{healthScore >= 80 ? 'bar-good' : healthScore >= 60 ? 'bar-ok' : 'bar-bad'}}"
+              style="width: {{healthScore}}%;"
+            ></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Category Comparison -->
+    <view wx:if="{{categoryComparison.length > 0}}" class="comparison-card">
+      <text class="card-title">消费类别对比</text>
+      <view class="legend-row">
+        <view class="legend-item">
+          <view class="legend-dot my-dot"></view>
+          <text class="legend-text">我的</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot school-dot"></view>
+          <text class="legend-text">校均</text>
+        </view>
+      </view>
+
+      <view wx:for="{{categoryComparison}}" wx:key="category" class="compare-item">
+        <view class="compare-head">
+          <text class="compare-cat">{{item.icon}} {{item.category}}</text>
+          <view class="compare-amounts">
+            <text class="my-amount">¥{{item.userAmountDisplay}}</text>
+            <text class="vs-text"> vs </text>
+            <text class="school-amount">¥{{item.schoolAvgDisplay}}</text>
+          </view>
+        </view>
+        <view class="bar-group">
+          <view class="bar-row">
+            <text class="bar-label">我</text>
+            <view class="bar-track">
+              <view class="bar-my" style="width: {{item.userBarWidth}}%;"></view>
+            </view>
+          </view>
+          <view class="bar-row">
+            <text class="bar-label">校</text>
+            <view class="bar-track">
+              <view class="bar-school" style="width: {{item.schoolBarWidth}}%;"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- No Data State -->
+    <view wx:if="{{categoryComparison.length === 0}}" class="no-data-card">
+      <text class="no-data-icon">📊</text>
+      <text class="no-data-title">数据不足</text>
+      <text class="no-data-sub">记录更多账单后，即可查看消费画像分析</text>
+    </view>
+  </block>
+</view>

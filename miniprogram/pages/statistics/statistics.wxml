@@ -1,0 +1,188 @@
+<view class="page-container">
+  <!-- Month Navigator -->
+  <view class="month-nav">
+    <view class="month-arrow" bindtap="prevMonth">
+      <text class="arrow-text">‹</text>
+    </view>
+    <text class="month-label">{{currentMonthDisplay}}</text>
+    <view class="month-arrow" bindtap="nextMonth">
+      <text class="arrow-text">›</text>
+    </view>
+  </view>
+
+  <!-- Summary Cards -->
+  <view class="summary-section">
+    <view class="summary-card">
+      <text class="summary-label">总收入</text>
+      <text class="summary-amount income-color">¥{{totalIncome}}</text>
+    </view>
+    <view class="summary-card middle-card">
+      <text class="summary-label">总支出</text>
+      <text class="summary-amount expense-color">¥{{totalExpense}}</text>
+    </view>
+    <view class="summary-card">
+      <text class="summary-label">结余</text>
+      <text class="summary-amount net-color">¥{{netBalance}}</text>
+    </view>
+  </view>
+
+  <!-- Tab Switch -->
+  <view class="tab-switch">
+    <view
+      class="tab-item {{activeTab === 'expense' ? 'tab-active' : ''}}"
+      bindtap="switchTab"
+      data-tab="expense"
+    >
+      <text class="tab-text">支出分析</text>
+    </view>
+    <view
+      class="tab-item {{activeTab === 'income' ? 'tab-active' : ''}}"
+      bindtap="switchTab"
+      data-tab="income"
+    >
+      <text class="tab-text">收入分析</text>
+    </view>
+  </view>
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">📊 加载中...</text>
+  </view>
+
+  <view wx:else>
+    <!-- Expense Tab -->
+    <view wx:if="{{activeTab === 'expense'}}" class="categories-section">
+      <view wx:if="{{expenseCategories.length > 0}}">
+
+        <!-- Pie Chart -->
+        <view class="chart-card">
+          <text class="chart-title">支出占比</text>
+          <view class="pie-container">
+            <canvas id="pieChartExpense" type="2d" style="width:300rpx;height:300rpx;"></canvas>
+            <view class="pie-legend">
+              <view wx:for="{{expenseCategories}}" wx:key="category" class="legend-item">
+                <view class="legend-dot" style="background:{{item.color}};"></view>
+                <text class="legend-name">{{item.icon}} {{item.category}}</text>
+                <text class="legend-pct">{{item.percentage}}%</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- Daily Bar Chart -->
+        <view class="chart-card">
+          <text class="chart-title">每日支出</text>
+          <canvas id="dailyBarExpense" type="2d" style="width:630rpx;height:200rpx;"></canvas>
+        </view>
+
+        <!-- Original Bar Chart -->
+        <view class="chart-card">
+          <text class="chart-title">分类对比</text>
+          <view wx:for="{{expenseCategories}}" wx:key="category" class="chart-bar-row">
+            <text class="bar-category">{{item.icon}} {{item.category}}</text>
+            <view class="bar-track">
+              <view class="bar-fill" style="width: {{item.barWidth}}%; background: {{item.color}};"></view>
+            </view>
+            <text class="bar-percent">{{item.percentage}}%</text>
+          </view>
+        </view>
+
+        <!-- Category List -->
+        <view class="category-list-card">
+          <text class="list-title">分类明细</text>
+          <view wx:for="{{expenseCategories}}" wx:key="category" class="category-row">
+            <view class="cat-left">
+              <view class="cat-dot" style="background: {{item.color}};"></view>
+              <text class="cat-icon-sm">{{item.icon}}</text>
+              <text class="cat-name-sm">{{item.category}}</text>
+            </view>
+            <view class="cat-right">
+              <text class="cat-amount">¥{{item.amountDisplay}}</text>
+              <text class="cat-percent">{{item.percentage}}%</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:else class="empty-state">
+        <text class="empty-icon">📊</text>
+        <text class="empty-text">本月暂无支出记录</text>
+      </view>
+    </view>
+
+    <!-- Income Tab -->
+    <view wx:elif="{{activeTab === 'income'}}" class="categories-section">
+      <view wx:if="{{incomeCategories.length > 0}}">
+
+        <!-- Pie Chart -->
+        <view class="chart-card">
+          <text class="chart-title">收入占比</text>
+          <view class="pie-container">
+            <canvas id="pieChartIncome" type="2d" style="width:300rpx;height:300rpx;"></canvas>
+            <view class="pie-legend">
+              <view wx:for="{{incomeCategories}}" wx:key="category" class="legend-item">
+                <view class="legend-dot" style="background:{{item.color}};"></view>
+                <text class="legend-name">{{item.icon}} {{item.category}}</text>
+                <text class="legend-pct">{{item.percentage}}%</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- Daily Bar Chart -->
+        <view class="chart-card">
+          <text class="chart-title">每日收入</text>
+          <canvas id="dailyBarIncome" type="2d" style="width:630rpx;height:200rpx;"></canvas>
+        </view>
+
+        <!-- Original Bar Chart -->
+        <view class="chart-card">
+          <text class="chart-title">分类对比</text>
+          <view wx:for="{{incomeCategories}}" wx:key="category" class="chart-bar-row">
+            <text class="bar-category">{{item.icon}} {{item.category}}</text>
+            <view class="bar-track">
+              <view class="bar-fill" style="width: {{item.barWidth}}%; background: {{item.color}};"></view>
+            </view>
+            <text class="bar-percent">{{item.percentage}}%</text>
+          </view>
+        </view>
+
+        <view class="category-list-card">
+          <text class="list-title">分类明细</text>
+          <view wx:for="{{incomeCategories}}" wx:key="category" class="category-row">
+            <view class="cat-left">
+              <view class="cat-dot" style="background: {{item.color}};"></view>
+              <text class="cat-icon-sm">{{item.icon}}</text>
+              <text class="cat-name-sm">{{item.category}}</text>
+            </view>
+            <view class="cat-right">
+              <text class="cat-amount">¥{{item.amountDisplay}}</text>
+              <text class="cat-percent">{{item.percentage}}%</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:else class="empty-state">
+        <text class="empty-icon">💰</text>
+        <text class="empty-text">本月暂无收入记录</text>
+      </view>
+    </view>
+
+    <!-- Trend Chart (always visible, outside tabs) -->
+    <view class="chart-card trend-card">
+      <text class="chart-title">近6个月收支趋势</text>
+      <view class="trend-legend">
+        <view class="trend-legend-item">
+          <view class="trend-dot income-bg"></view>
+          <text class="trend-legend-text">收入</text>
+        </view>
+        <view class="trend-legend-item">
+          <view class="trend-dot expense-bg"></view>
+          <text class="trend-legend-text">支出</text>
+        </view>
+      </view>
+      <canvas id="trendChart" type="2d" style="width:630rpx;height:220rpx;"></canvas>
+    </view>
+  </view>
+</view>

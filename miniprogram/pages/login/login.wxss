@@ -1,0 +1,130 @@
+.login-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40rpx 80rpx;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0 80rpx;
+}
+
+.logo-circle {
+  width: 140rpx;
+  height: 140rpx;
+  background: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28rpx;
+  box-shadow: 0 8rpx 40rpx var(--color-accent-glow);
+}
+
+.logo-icon {
+  font-size: 60rpx;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.app-name {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 12rpx;
+  letter-spacing: 4rpx;
+}
+
+.app-subtitle {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.form-card {
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  border: 1rpx solid var(--border-subtle);
+  padding: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.form-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 36rpx;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.form-item-label {
+  display: flex;
+  align-items: center;
+  width: 140rpx;
+}
+
+.label-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.label-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: var(--text-primary);
+  height: 72rpx;
+  padding: 0 16rpx;
+  background: transparent;
+}
+
+.input-placeholder {
+  color: var(--text-placeholder);
+  font-size: 28rpx;
+}
+
+.toggle-pwd {
+  font-size: 24rpx;
+  color: var(--color-accent);
+  padding: 10rpx;
+}
+
+.divider-line {
+  height: 1rpx;
+  background: var(--border-divider);
+  margin: 4rpx 0;
+}
+
+.register-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.register-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.register-action {
+  font-size: 28rpx;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-left: 8rpx;
+}

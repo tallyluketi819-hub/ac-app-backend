@@ -1,0 +1,102 @@
+<view class="page-container">
+  <!-- Top Header Banner -->
+  <view class="header-banner">
+    <view class="header-top">
+      <view class="greeting">
+        <text class="greeting-text">你好，{{userInfo.name || '同学'}} 👋</text>
+        <text class="month-text">{{currentMonthDisplay}}</text>
+      </view>
+      <view class="stats-btn" bindtap="goToStatistics">
+        <text class="stats-icon">📊</text>
+      </view>
+    </view>
+
+    <!-- Hero Balance -->
+    <view class="hero-balance">
+      <text class="hero-label">本月结余</text>
+      <text class="hero-amount amount amount-hero">¥ {{netBalance}}</text>
+      <view class="hero-sub-row">
+        <view class="hero-sub-item">
+          <text class="hero-sub-label">收入</text>
+          <text class="hero-sub-amount income-text">+¥{{totalIncome}}</text>
+        </view>
+        <view class="hero-sub-item">
+          <text class="hero-sub-label">支出</text>
+          <text class="hero-sub-amount expense-text">-¥{{totalExpense}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Quick Actions -->
+  <view class="quick-actions">
+    <view class="action-btn" bindtap="goToAddBill">
+      <view class="action-icon-wrap expense-wrap">
+        <text class="action-icon">➖</text>
+      </view>
+      <text class="action-text">记支出</text>
+    </view>
+    <view class="action-btn" bindtap="goToAddBill">
+      <view class="action-icon-wrap income-wrap">
+        <text class="action-icon">➕</text>
+      </view>
+      <text class="action-text">记收入</text>
+    </view>
+    <view class="action-btn" bindtap="goToStatistics">
+      <view class="action-icon-wrap stats-wrap">
+        <text class="action-icon">📈</text>
+      </view>
+      <text class="action-text">统计</text>
+    </view>
+  </view>
+
+  <!-- Recent Bills -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">最近账单</text>
+      <text class="section-more" bindtap="goToStatistics">查看全部 ›</text>
+    </view>
+
+    <!-- Loading -->
+    <view wx:if="{{loading}}" class="loading-state">
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <!-- Bill List -->
+    <view wx:elif="{{recentBills.length > 0}}" class="bills-list">
+      <view
+        wx:for="{{recentBills}}"
+        wx:key="id"
+        class="bill-item"
+        bindtap="onBillTap"
+        data-bill="{{item}}"
+      >
+        <view class="bill-icon-wrap">
+          <text class="bill-icon">{{item.icon}}</text>
+        </view>
+        <view class="bill-info">
+          <text class="bill-category">{{item.category}}</text>
+          <text class="bill-note">{{item.note || item.dateDisplay}}</text>
+        </view>
+        <view class="bill-right">
+          <text class="bill-amount {{item.type === 'income' ? 'income-text' : 'expense-text'}}">
+            {{item.type === 'income' ? '+' : '-'}}¥{{item.amountDisplay}}
+          </text>
+          <text class="bill-date">{{item.dateDisplay}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Empty State -->
+    <view wx:else class="empty-bills">
+      <text class="empty-icon">📝</text>
+      <text class="empty-title">本月还没有账单</text>
+      <text class="empty-sub">点击下方按钮开始记账</text>
+    </view>
+  </view>
+
+  <!-- Floating Add Button -->
+  <view class="fab-btn" bindtap="goToAddBill">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

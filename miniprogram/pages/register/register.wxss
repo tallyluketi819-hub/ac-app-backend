@@ -1,0 +1,139 @@
+.register-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding-bottom: 60rpx;
+}
+
+.header-area {
+  background: var(--bg-card);
+  border-bottom: 1rpx solid var(--border-subtle);
+  padding: 80rpx 40rpx 50rpx;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: 80rpx;
+  left: 30rpx;
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 40rpx;
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50rpx;
+}
+
+.header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 12rpx;
+}
+
+.header-subtitle {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.form-card {
+  margin: 24rpx 30rpx 0;
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  border: 1rpx solid var(--border-subtle);
+  padding: 40rpx;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24rpx 0;
+  min-height: 80rpx;
+}
+
+.item-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  width: 100rpx;
+  flex-shrink: 0;
+}
+
+.item-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: var(--text-primary);
+  height: 68rpx;
+  padding: 0 10rpx;
+  background: transparent;
+}
+
+.input-placeholder {
+  color: var(--text-placeholder);
+  font-size: 28rpx;
+}
+
+.toggle-pwd {
+  font-size: 24rpx;
+  color: var(--color-accent);
+  padding: 10rpx;
+  flex-shrink: 0;
+}
+
+.divider-line {
+  height: 1rpx;
+  background: var(--border-divider);
+}
+
+.grade-picker {
+  flex: 1;
+}
+
+.picker-value {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rpx;
+  height: 68rpx;
+}
+
+.picker-text {
+  font-size: 30rpx;
+  color: var(--text-primary);
+}
+
+.picker-arrow {
+  font-size: 20rpx;
+  color: var(--text-secondary);
+}
+
+.login-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+
+.login-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.login-action {
+  font-size: 28rpx;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-left: 8rpx;
+}

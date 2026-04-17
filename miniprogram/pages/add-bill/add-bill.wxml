@@ -1,0 +1,91 @@
+<view class="page-container">
+  <!-- Type Toggle -->
+  <view class="type-toggle">
+    <view
+      class="type-btn {{billType === 'expense' ? 'type-active expense-active' : ''}}"
+      bindtap="switchType"
+      data-type="expense"
+    >
+      <text class="type-icon">📤</text>
+      <text class="type-text">支出</text>
+    </view>
+    <view
+      class="type-btn {{billType === 'income' ? 'type-active income-active' : ''}}"
+      bindtap="switchType"
+      data-type="income"
+    >
+      <text class="type-icon">📥</text>
+      <text class="type-text">收入</text>
+    </view>
+  </view>
+
+  <!-- Amount Input -->
+  <view class="amount-section {{billType === 'income' ? 'income-bg' : 'expense-bg'}}">
+    <text class="amount-label">{{billType === 'income' ? '收入金额' : '支出金额'}}</text>
+    <view class="amount-input-row">
+      <text class="currency-symbol">¥</text>
+      <input
+        class="amount-input"
+        type="digit"
+        placeholder="0.00"
+        placeholder-class="amount-placeholder"
+        value="{{amount}}"
+        bindinput="onAmountInput"
+        focus="{{true}}"
+      />
+    </view>
+  </view>
+
+  <!-- Category Selection -->
+  <view class="section-card">
+    <text class="section-heading">选择分类</text>
+    <view class="category-grid">
+      <view
+        wx:for="{{currentCategories}}"
+        wx:key="name"
+        class="category-item {{selectedCategory === item.name ? 'category-selected' : ''}}"
+        bindtap="selectCategory"
+        data-name="{{item.name}}"
+      >
+        <text class="cat-icon">{{item.icon}}</text>
+        <text class="cat-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Note and Date -->
+  <view class="section-card">
+    <view class="form-row">
+      <text class="form-label">💬 备注</text>
+      <input
+        class="form-input"
+        type="text"
+        placeholder="添加备注（可选）"
+        placeholder-class="input-placeholder"
+        value="{{note}}"
+        bindinput="onNoteInput"
+        maxlength="50"
+      />
+    </view>
+    <view class="divider-thin"></view>
+    <view class="form-row">
+      <text class="form-label">📅 日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="date-picker-val">
+          <text class="date-text">{{date}}</text>
+          <text class="date-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- Save Button -->
+  <view class="save-section">
+    <view
+      class="btn-primary {{loading ? 'disabled' : ''}}"
+      bindtap="onSave"
+    >
+      {{loading ? '保存中...' : '保存账单'}}
+    </view>
+  </view>
+</view>

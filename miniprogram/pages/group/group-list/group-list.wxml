@@ -1,0 +1,99 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="list-header">
+    <text class="header-title">我的分账群组</text>
+    <view class="create-btn" bindtap="showCreateGroup">
+      <text class="create-icon">+</text>
+      <text class="create-text">创建</text>
+    </view>
+  </view>
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- Group List -->
+  <view wx:elif="{{groups.length > 0}}" class="groups-list">
+    <view
+      wx:for="{{groups}}"
+      wx:key="id"
+      class="group-card"
+      bindtap="goToGroupDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="group-avatar">
+        <text class="avatar-text">{{item.name[0]}}</text>
+      </view>
+      <view class="group-info">
+        <text class="group-name">{{item.name}}</text>
+        <text class="group-meta">{{item.member_count}}人 · {{item.description || '暂无描述'}}</text>
+      </view>
+      <view class="group-balance">
+        <text wx:if="{{item.balanceType === 'owed'}}" class="balance-owed">
+          +¥{{item.balanceDisplay}}
+        </text>
+        <text wx:elif="{{item.balanceType === 'owe'}}" class="balance-owe">
+          -¥{{item.balanceDisplay}}
+        </text>
+        <text wx:else class="balance-settled">已结清</text>
+        <text class="balance-hint">
+          {{item.balanceType === 'owed' ? '待收' : item.balanceType === 'owe' ? '待还' : ''}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty State -->
+  <view wx:else class="empty-state">
+    <text class="empty-icon">👥</text>
+    <text class="empty-title">还没有分账群组</text>
+    <text class="empty-sub">点击右上角创建群组，和朋友一起记账</text>
+    <view class="empty-btn" bindtap="showCreateGroup">
+      <text class="empty-btn-text">创建群组</text>
+    </view>
+  </view>
+
+  <!-- Create Group Modal -->
+  <view wx:if="{{showCreateModal}}" class="modal-overlay" bindtap="hideCreateModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <text class="modal-title">创建分账群组</text>
+
+      <view class="modal-form">
+        <view class="modal-form-item">
+          <text class="modal-label">群组名称</text>
+          <input
+            class="modal-input"
+            type="text"
+            placeholder="例如：宿舍四人组"
+            placeholder-class="modal-placeholder"
+            value="{{newGroupName}}"
+            bindinput="onGroupNameInput"
+            maxlength="30"
+          />
+        </view>
+        <view class="modal-form-item">
+          <text class="modal-label">群组描述</text>
+          <input
+            class="modal-input"
+            type="text"
+            placeholder="添加描述（可选）"
+            placeholder-class="modal-placeholder"
+            value="{{newGroupDesc}}"
+            bindinput="onGroupDescInput"
+            maxlength="50"
+          />
+        </view>
+      </view>
+
+      <view class="modal-actions">
+        <view class="modal-cancel" bindtap="hideCreateModal">
+          <text class="cancel-text">取消</text>
+        </view>
+        <view class="modal-confirm" bindtap="createGroup">
+          <text class="confirm-text">{{creating ? '创建中...' : '创建'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

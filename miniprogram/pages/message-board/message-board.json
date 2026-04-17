@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "留言板",
+  "navigationBarBackgroundColor": "#0D0D0F",
+  "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false
 }

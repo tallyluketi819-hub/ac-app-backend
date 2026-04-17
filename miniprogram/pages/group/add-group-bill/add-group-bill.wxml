@@ -1,0 +1,102 @@
+<view class="page-container">
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">加载成员中...</text>
+  </view>
+
+  <block wx:else>
+    <!-- Amount Input -->
+    <view class="amount-section">
+      <text class="amount-label">共同支出金额</text>
+      <view class="amount-input-row">
+        <text class="currency-symbol">¥</text>
+        <input
+          class="amount-input"
+          type="digit"
+          placeholder="0.00"
+          placeholder-class="amount-placeholder"
+          value="{{amount}}"
+          bindinput="onAmountInput"
+          focus="{{true}}"
+        />
+      </view>
+    </view>
+
+    <!-- Description -->
+    <view class="section-card">
+      <text class="section-label">📝 支出说明</text>
+      <input
+        class="desc-input"
+        type="text"
+        placeholder="填写支出说明（如：今晚聚餐）"
+        placeholder-class="input-placeholder"
+        value="{{description}}"
+        bindinput="onDescInput"
+        maxlength="50"
+      />
+    </view>
+
+    <!-- Payer Selection -->
+    <view class="section-card">
+      <text class="section-label">💳 谁付款了？</text>
+      <view class="payer-grid">
+        <view
+          wx:for="{{members}}"
+          wx:key="id"
+          class="payer-item {{payerId === item.id ? 'payer-selected' : ''}}"
+          bindtap="selectPayer"
+          data-id="{{item.id}}"
+          data-name="{{item.name}}"
+        >
+          <view class="payer-avatar">
+            <text class="payer-avatar-text">{{item.name[0]}}</text>
+          </view>
+          <text class="payer-name">{{item.name}}</text>
+          <view wx:if="{{payerId === item.id}}" class="payer-check">
+            <text class="check-icon">✓</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Participants Selection -->
+    <view class="section-card">
+      <view class="participants-head">
+        <text class="section-label">👥 谁参与分摊？</text>
+        <text class="participants-count">{{participants.length}}人</text>
+      </view>
+      <view wx:for="{{members}}" wx:key="id" class="participant-row">
+        <view class="participant-left">
+          <view class="participant-avatar">
+            <text class="pa-text">{{item.name[0]}}</text>
+          </view>
+          <text class="participant-name">{{item.name}}</text>
+        </view>
+        <view
+          class="checkbox {{participants.indexOf(item.id) >= 0 ? 'checked' : ''}}"
+          bindtap="toggleParticipant"
+          data-id="{{item.id}}"
+        >
+          <text wx:if="{{participants.indexOf(item.id) >= 0}}" class="check-mark">✓</text>
+        </view>
+      </view>
+
+      <!-- Per person amount hint -->
+      <view wx:if="{{amount && participants.length > 0}}" class="split-hint">
+        <text class="split-hint-text">
+          每人分摊：¥{{perPersonAmount}}
+        </text>
+      </view>
+    </view>
+
+    <!-- Submit Button -->
+    <view class="submit-section">
+      <view
+        class="btn-primary {{submitting ? 'disabled' : ''}}"
+        bindtap="onSubmit"
+      >
+        {{submitting ? '提交中...' : '确认添加账单'}}
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,117 @@
+<view class="page-container">
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:elif="{{group}}">
+    <!-- Group Info Header -->
+    <view class="group-header">
+      <view class="group-avatar-large">
+        <text class="avatar-text-large">{{group.name[0]}}</text>
+      </view>
+      <view class="group-header-info">
+        <text class="group-name-large">{{group.name}}</text>
+        <text class="group-desc">{{group.description || '暂无描述'}}</text>
+      </view>
+    </view>
+
+    <!-- Members Section -->
+    <view class="section-card">
+      <view class="section-head">
+        <text class="section-title">成员（{{members.length}}人）</text>
+        <view class="add-member-btn" bindtap="showAddMember">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加成员</text>
+        </view>
+      </view>
+      <scroll-view class="members-scroll" scroll-x="true" enable-flex="true">
+        <view wx:for="{{members}}" wx:key="id" class="member-item">
+          <view class="member-avatar">
+            <text class="member-avatar-text">{{item.name[0]}}</text>
+          </view>
+          <text class="member-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- Debt Settlement Panel -->
+    <view class="section-card">
+      <text class="section-title">债务结算</text>
+      <view wx:if="{{debts.length > 0}}">
+        <view
+          wx:for="{{debts}}"
+          wx:key="id"
+          class="debt-item {{item.is_settled ? 'debt-settled' : ''}}"
+        >
+          <view class="debt-info">
+            <view class="debt-arrow-row">
+              <text class="debt-from">{{item.from_user_name}}</text>
+              <text class="debt-arrow">→</text>
+              <text class="debt-to">{{item.to_user_name}}</text>
+            </view>
+            <text class="debt-amount">¥{{item.amountDisplay}}</text>
+          </view>
+          <view wx:if="{{!item.is_settled}}" class="settle-btn" bindtap="settleDebt" data-id="{{item.id}}">
+            <text class="settle-text">结清</text>
+          </view>
+          <view wx:else class="settled-badge">
+            <text class="settled-text">✓ 已结清</text>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="empty-debt">
+        <text class="empty-debt-text">🎉 暂无未结清债务</text>
+      </view>
+    </view>
+
+    <!-- Bills Section -->
+    <view class="section-card">
+      <view class="section-head">
+        <text class="section-title">账单记录</text>
+        <view class="add-bill-btn" bindtap="goToAddBill">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加支出</text>
+        </view>
+      </view>
+
+      <view wx:if="{{bills.length > 0}}">
+        <view wx:for="{{bills}}" wx:key="id" class="bill-item">
+          <view class="bill-left">
+            <text class="bill-desc">{{item.description || '未填写描述'}}</text>
+            <text class="bill-meta">{{item.payer_name}} 付款 · {{item.participants.length}}人分摊</text>
+          </view>
+          <text class="bill-amount-text">¥{{item.amountDisplay}}</text>
+        </view>
+      </view>
+      <view wx:else class="empty-bills">
+        <text class="empty-text">暂无账单，点击添加支出</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Add Member Modal -->
+  <view wx:if="{{showAddMemberModal}}" class="modal-overlay" bindtap="hideAddMemberModal">
+    <view class="modal-content" catchtap="noop">
+      <text class="modal-title">添加成员</text>
+      <text class="modal-hint">通过手机号搜索并添加成员</text>
+      <input
+        class="modal-input"
+        type="number"
+        placeholder="请输入对方手机号"
+        placeholder-class="modal-placeholder"
+        value="{{addMemberPhone}}"
+        bindinput="onAddMemberPhoneInput"
+        maxlength="11"
+      />
+      <view class="modal-actions">
+        <view class="modal-cancel" bindtap="hideAddMemberModal">
+          <text class="cancel-text">取消</text>
+        </view>
+        <view class="modal-confirm" bindtap="confirmAddMember">
+          <text class="confirm-text">{{addingMember ? '添加中...' : '确认添加'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

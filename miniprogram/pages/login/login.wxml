@@ -1,0 +1,62 @@
+<view class="login-container">
+  <!-- Logo Area -->
+  <view class="logo-area">
+    <view class="logo-circle">
+      <text class="logo-icon">¥</text>
+    </view>
+    <text class="app-name">校园记账</text>
+    <text class="app-subtitle">专为大学生设计的智能记账工具</text>
+  </view>
+
+  <!-- Login Form -->
+  <view class="form-card">
+    <view class="form-title">登录账号</view>
+
+    <view class="form-item">
+      <view class="form-item-label">
+        <text class="label-icon">📱</text>
+        <text class="label-text">手机号</text>
+      </view>
+      <input
+        class="form-input"
+        type="number"
+        placeholder="请输入手机号"
+        placeholder-class="input-placeholder"
+        maxlength="11"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+
+    <view class="divider-line"></view>
+
+    <view class="form-item">
+      <view class="form-item-label">
+        <text class="label-icon">🔒</text>
+        <text class="label-text">密码</text>
+      </view>
+      <input
+        class="form-input"
+        type="{{showPassword ? 'text' : 'password'}}"
+        placeholder="请输入密码"
+        placeholder-class="input-placeholder"
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+      <text class="toggle-pwd" bindtap="togglePassword">{{showPassword ? '隐藏' : '显示'}}</text>
+    </view>
+
+    <view
+      class="btn-primary {{loading ? 'disabled' : ''}}"
+      bindtap="onLogin"
+    >
+      {{loading ? '登录中...' : '登 录'}}
+    </view>
+  </view>
+
+  <!-- Register Link -->
+  <view class="register-link" bindtap="goToRegister">
+    <text class="register-text">还没有账号？</text>
+    <text class="register-action">立即注册</text>
+  </view>
+</view>

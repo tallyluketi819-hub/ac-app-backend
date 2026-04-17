@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "校园记账",
+  "navigationBarBackgroundColor": "#0D0D0F",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#0D0D0F"
+}
