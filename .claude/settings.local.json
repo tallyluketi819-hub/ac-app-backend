@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mysql --version 2>/dev/null || echo \"MySQL not found\")",
+      "Bash(brew --version 2>/dev/null || echo \"Homebrew not found\")",
+      "Bash(node --version 2>/dev/null || echo \"Node not found\" && npm --version 2>/dev/null || echo \"npm not found\")",
+      "Bash(docker --version 2>/dev/null || echo \"Docker not found\")",
+      "Bash(sleep 15 && docker exec ac-mysql mysql -uroot -proot123 -e \"SELECT 1\" 2>/dev/null && echo \"MySQL ready\")",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 accounting -e \"SHOW TABLES;\" 2>/dev/null)",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 college_accounting --default-character-set=utf8mb4 -e \"INSERT INTO users \\(name, phone, password, school, grade\\) VALUES \\('测试', '13800138001', 'hash', '北大', '大四'\\);\" 2>&1)",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 college_accounting -e \"SHOW CREATE TABLE users\\\\G\" 2>/dev/null | grep -A2 grade)",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 college_accounting -e \"SET NAMES utf8mb4; INSERT INTO users \\(name, phone, password, school, grade\\) VALUES \\('测试', '13800138001', 'hash', '北大', '大四'\\);\" 2>&1)",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 college_accounting -e \"SELECT HEX\\('大四'\\), HEX\\(column_type\\) FROM information_schema.columns WHERE table_name='users' AND column_name='grade';\" 2>/dev/null)",
+      "Bash(docker exec ac-mysql mysql -uroot -proot123 college_accounting -e \"ALTER TABLE users MODIFY COLUMN grade VARCHAR\\(20\\) DEFAULT '大一';\" 2>/dev/null && echo \"done\")",
+      "Bash(curl -s http://localhost:3000/api/auth/register \\\\\n  -X POST -H \"Content-Type: application/json\" \\\\\n  -d '{\"name\":\"测试用户\",\"phone\":\"13800138000\",\"password\":\"123456\",\"school\":\"北京大学\",\"grade\":\"大四\"}')",
+      "Bash(curl -s http://localhost:3000/api/auth/login \\\\\n  -X POST -H \"Content-Type: application/json\" \\\\\n  -d '{\"phone\":\"13800138000\",\"password\":\"123456\"}' | python3 -m json.tool)"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+<h2>统计分析页增强方案</h2>
+<p class="subtitle">当前页面只有横向进度条图表，选择你想加入哪些可视化维度（可多选）</p>
+
+<div class="options" data-multiselect>
+
+  <div class="option" data-choice="pie" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>🥧 饼图 / 环形图</h3>
+      <p>用扇形直观展示各分类占比，一眼看出哪项支出最多。用 Canvas 绘制，微信小程序原生支持。</p>
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+        <div style="width:60px;height:60px;border-radius:50%;background:conic-gradient(#FF7043 0% 35%,#42A5F5 35% 55%,#AB47BC 55% 72%,#FFA726 72% 85%,#78909C 85% 100%);"></div>
+        <div style="font-size:13px;color:#666">餐饮35% / 交通20% / 娱乐17% / 日用13% / 其他15%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="trend" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>📈 近6个月收支趋势折线图</h3>
+      <p>横轴为月份，纵轴为金额，收入/支出各一条线，直观看到消费趋势。需要后端新增多月汇总接口。</p>
+      <div style="margin-top:12px;height:50px;position:relative;overflow:hidden">
+        <svg viewBox="0 0 300 50" style="width:100%;height:100%">
+          <polyline points="0,40 50,30 100,35 150,20 200,25 250,15 300,18" fill="none" stroke="#4CAF50" stroke-width="2"/>
+          <polyline points="0,45 50,42 100,38 150,44 200,36 250,40 300,35" fill="none" stroke="#F44336" stroke-width="2"/>
+        </svg>
+        <div style="font-size:11px;color:#999;margin-top:4px">绿=收入 红=支出</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="daily" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>📅 每日支出柱状图</h3>
+      <p>当月每一天的支出金额用竖柱展示，快速定位哪几天花钱最多，适合发现消费高峰。</p>
+      <div style="margin-top:12px;display:flex;align-items:flex-end;gap:3px;height:50px">
+        ${[18,5,0,42,12,8,35,20,3,60,15,28,10,45,8,30,22,5,0,50,18,12,38,6,20,44,10,25,8,15].map((h,i)=>
+          `<div style="flex:1;height:${Math.round(h/60*44)+2}px;background:#4CAF50;border-radius:2px 2px 0 0;opacity:0.8"></div>`
+        ).join('')}
+      </div>
+      <div style="font-size:11px;color:#999;margin-top:4px">1日 ─────────────── 30日</div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="budget" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>🎯 预算进度对比</h3>
+      <p>为每个分类设置月度预算目标，统计页显示"已花 / 预算"进度条，超支时变红色警示。</p>
+      <div style="margin-top:12px">
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px"><span>🍜 餐饮</span><span>¥350 / ¥500</span></div>
+          <div style="height:10px;background:#eee;border-radius:5px;overflow:hidden"><div style="width:70%;height:100%;background:#4CAF50;border-radius:5px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px"><span>🎮 娱乐</span><span>¥180 / ¥100 ⚠️</span></div>
+          <div style="height:10px;background:#eee;border-radius:5px;overflow:hidden"><div style="width:100%;height:100%;background:#F44336;border-radius:5px"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:24px">点击可多选，选好后在终端告诉我你的选择</p>

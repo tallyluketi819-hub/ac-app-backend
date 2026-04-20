@@ -10,8 +10,8 @@ const WallMessage = {
        FROM wall_messages
        WHERE target_user_id = ? AND parent_id IS NULL
        ORDER BY created_at DESC
-       LIMIT ? OFFSET ?`,
-      [targetUserId, limit, offset]
+       LIMIT ${limit} OFFSET ${offset}`,
+      [targetUserId]
     );
 
     const [[{ total }]] = await db.execute(

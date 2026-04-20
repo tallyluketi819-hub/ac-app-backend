@@ -5,14 +5,13 @@ const Message = {
   async findAll(page, limit) {
     const offset = (page - 1) * limit;
 
-    // 获取顶层留言
+    // 获取顶层留言（LIMIT/OFFSET 直接嵌入，值已是校验过的整数）
     const [rows] = await db.execute(
       `SELECT id, content, nickname, user_id, created_at
        FROM messages
        WHERE parent_id IS NULL
        ORDER BY created_at DESC
-       LIMIT ? OFFSET ?`,
-      [limit, offset]
+       LIMIT ${limit} OFFSET ${offset}`
     );
 
     // 获取总数

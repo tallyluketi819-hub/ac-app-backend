@@ -1,0 +1,93 @@
+<h2>页面结构方案</h2>
+<p class="subtitle">三个图表如何融入现有统计页？选择你喜欢的布局</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="A" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>方案 A — 新增"趋势"标签页</h3>
+      <p style="color:#666;font-size:13px;margin-bottom:16px">原有「支出分析/收入分析」Tab 内增加饼图+每日柱状图；新增第三个 Tab 放折线图</p>
+      <div class="mockup" style="font-size:12px">
+        <div class="mockup-header">统计分析页</div>
+        <div class="mockup-body" style="padding:12px">
+          <div style="background:#f5f5f5;border-radius:6px;padding:8px;text-align:center;margin-bottom:10px">月份导航 ‹ 2026年4月 ›</div>
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <div style="flex:1;background:#e8f5e9;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">收入</div><div style="color:#4CAF50;font-weight:bold">¥500</div></div>
+            <div style="flex:1;background:#fce4ec;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">支出</div><div style="color:#F44336;font-weight:bold">¥320</div></div>
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">结余</div><div style="font-weight:bold">¥180</div></div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:10px">
+            <div style="flex:1;background:#4CAF50;color:white;border-radius:6px;padding:6px;text-align:center;font-size:11px">支出分析</div>
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center;font-size:11px;color:#666">收入分析</div>
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center;font-size:11px;color:#666">📈 趋势</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:6px;padding:8px;margin-bottom:6px">
+            <div style="font-size:11px;color:#999;margin-bottom:4px">🥧 支出饼图</div>
+            <div style="display:flex;justify-content:center"><div style="width:50px;height:50px;border-radius:50%;background:conic-gradient(#FF7043 0% 35%,#42A5F5 35% 55%,#AB47BC 55% 72%,#FFA726 72% 100%);"></div></div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:6px;padding:8px">
+            <div style="font-size:11px;color:#999;margin-bottom:4px">📅 每日支出</div>
+            <div style="display:flex;align-items:flex-end;gap:2px;height:30px">
+              ${[18,5,0,42,12,8,35,20,3,60,15,28,10,45,8,30,22,5,0,50,18,12,38,6,20,44,10,25,8,15].map(h=>`<div style="flex:1;height:${Math.round(h/60*28)+1}px;background:#4CAF50;border-radius:1px;opacity:0.8"></div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>优点</h4><ul><li>结构清晰，每个 Tab 职责单一</li><li>不需要大改现有布局</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>页面较长，需要滚动</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="B" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>方案 B — 图表优先布局</h3>
+      <p style="color:#666;font-size:13px;margin-bottom:16px">把三个图表合并成一个「图表」Tab，原有 Tab 保持不变，整洁分离</p>
+      <div class="mockup" style="font-size:12px">
+        <div class="mockup-header">统计分析页</div>
+        <div class="mockup-body" style="padding:12px">
+          <div style="background:#f5f5f5;border-radius:6px;padding:8px;text-align:center;margin-bottom:10px">月份导航 ‹ 2026年4月 ›</div>
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <div style="flex:1;background:#e8f5e9;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">收入</div><div style="color:#4CAF50;font-weight:bold">¥500</div></div>
+            <div style="flex:1;background:#fce4ec;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">支出</div><div style="color:#F44336;font-weight:bold">¥320</div></div>
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center"><div style="color:#999;font-size:10px">结余</div><div style="font-weight:bold">¥180</div></div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:10px">
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center;font-size:11px;color:#666">支出</div>
+            <div style="flex:1;background:#f5f5f5;border-radius:6px;padding:6px;text-align:center;font-size:11px;color:#666">收入</div>
+            <div style="flex:1;background:#4CAF50;color:white;border-radius:6px;padding:6px;text-align:center;font-size:11px">📊 图表</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:6px;padding:8px;margin-bottom:6px;text-align:center">
+            <div style="font-size:11px;color:#999;margin-bottom:6px">🥧 支出 / 收入 饼图</div>
+            <div style="display:flex;justify-content:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:50%;background:conic-gradient(#FF7043 0% 35%,#42A5F5 35% 55%,#AB47BC 55% 72%,#FFA726 72% 100%);"></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:conic-gradient(#66BB6A 0% 50%,#4CAF50 50% 80%,#FFD700 80% 100%);"></div>
+            </div>
+            <div style="font-size:10px;color:#ccc;margin-top:4px">支出 · 收入</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:6px;padding:8px;margin-bottom:6px">
+            <div style="font-size:11px;color:#999;margin-bottom:4px">📅 每日支出</div>
+            <div style="display:flex;align-items:flex-end;gap:2px;height:28px">
+              ${[18,5,0,42,12,8,35,20,3,60,15,28,10,45,8,30,22,5,0,50,18,12,38,6,20,44,10,25,8,15].map(h=>`<div style="flex:1;height:${Math.round(h/60*26)+1}px;background:#F44336;border-radius:1px;opacity:0.7"></div>`).join('')}
+            </div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:6px;padding:8px">
+            <div style="font-size:11px;color:#999;margin-bottom:4px">📈 近6个月趋势</div>
+            <svg viewBox="0 0 200 35" style="width:100%;height:35px">
+              <polyline points="0,28 40,20 80,24 120,12 160,16 200,10" fill="none" stroke="#4CAF50" stroke-width="1.5"/>
+              <polyline points="0,32 40,30 80,26 120,30 160,22 200,25" fill="none" stroke="#F44336" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>优点</h4><ul><li>三张图集中展示，一目了然</li><li>趋势图不受月份限制</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>图表 Tab 不随月份联动</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:20px">点击选择方案，或直接在终端告诉我</p>
