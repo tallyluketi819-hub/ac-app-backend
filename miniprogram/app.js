@@ -1,6 +1,6 @@
 App({
   globalData: {
-    baseUrl: 'http://192.168.1.16:3000/api',
+    baseUrl: 'https://ac-app-backend-production-363e.up.railway.app/api',
     token: null,
     userInfo: null
   },
