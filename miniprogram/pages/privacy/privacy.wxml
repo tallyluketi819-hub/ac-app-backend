@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="section">
+    <text class="title">用户服务协议与隐私政策</text>
+  </view>
+
+  <view class="section">
+    <text class="heading">一、信息收集</text>
+    <text class="content">我们收集以下信息以提供服务：\n· 手机号码（用于账号注册与登录）\n· 学校、年级信息（用于个性化展示）\n· 账单记录（用于记账功能）</text>
+  </view>
+
+  <view class="section">
+    <text class="heading">二、信息使用</text>
+    <text class="content">收集的信息仅用于：\n· 提供记账、分账等核心功能\n· 保障账号安全\n· 改善用户体验\n我们不会将您的信息出售或共享给第三方。</text>
+  </view>
+
+  <view class="section">
+    <text class="heading">三、信息存储</text>
+    <text class="content">您的数据存储在安全的云端服务器，采用加密传输（HTTPS）保护。您可随时在"我的"页面注销账号，注销后数据将被删除。</text>
+  </view>
+
+  <view class="section">
+    <text class="heading">四、用户权利</text>
+    <text class="content">您有权：\n· 查看和修改个人信息\n· 删除账号及相关数据\n· 拒绝使用本应用（如不同意本协议）</text>
+  </view>
+
+  <view class="section">
+    <text class="heading">五、联系我们</text>
+    <text class="content">如有疑问，请联系：tallyluketi819@gmail.com</text>
+  </view>
+</view>

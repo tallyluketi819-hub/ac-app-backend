@@ -128,3 +128,24 @@
   font-weight: 500;
   margin-left: 8rpx;
 }
+
+.privacy-row {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+.privacy-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.privacy-text {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.privacy-link {
+  font-size: 24rpx;
+  color: var(--color-accent);
+}

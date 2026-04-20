@@ -1,0 +1,29 @@
+.container {
+  padding: 40rpx;
+  background: #0D0D0F;
+  min-height: 100vh;
+}
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+.section {
+  margin-bottom: 40rpx;
+}
+.heading {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #00FF87;
+  display: block;
+  margin-bottom: 16rpx;
+}
+.content {
+  font-size: 26rpx;
+  color: #aaaaaa;
+  line-height: 1.8;
+  display: block;
+}

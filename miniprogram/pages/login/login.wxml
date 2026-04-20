@@ -54,6 +54,17 @@
     </view>
   </view>
 
+  <!-- Privacy Agreement -->
+  <view class="privacy-row">
+    <checkbox-group bindchange="onAgreeChange">
+      <label class="privacy-label">
+        <checkbox value="agree" checked="{{agreed}}" color="#00FF87" style="transform: scale(0.8)"/>
+        <text class="privacy-text">我已阅读并同意</text>
+        <text class="privacy-link" bindtap="goToPrivacy">《用户协议与隐私政策》</text>
+      </label>
+    </checkbox-group>
+  </view>
+
   <!-- Register Link -->
   <view class="register-link" bindtap="goToRegister">
     <text class="register-text">还没有账号？</text>

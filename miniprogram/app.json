@@ -11,7 +11,8 @@
     "pages/campus/campus",
     "pages/profile/profile",
     "pages/message-board/message-board",
-    "pages/user-wall/user-wall"
+    "pages/user-wall/user-wall",
+    "pages/privacy/privacy"
   ],
   "tabBar": {
     "color": "#555566",

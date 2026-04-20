@@ -6,7 +6,8 @@ Page({
     phone: '',
     password: '',
     loading: false,
-    showPassword: false
+    showPassword: false,
+    agreed: false
   },
 
   onLoad() {
@@ -29,8 +30,21 @@ Page({
     this.setData({ showPassword: !this.data.showPassword });
   },
 
+  onAgreeChange(e) {
+    this.setData({ agreed: e.detail.value.length > 0 });
+  },
+
+  goToPrivacy() {
+    wx.navigateTo({ url: '/pages/privacy/privacy' });
+  },
+
   async onLogin() {
-    const { phone, password } = this.data;
+    const { phone, password, agreed } = this.data;
+
+    if (!agreed) {
+      wx.showToast({ title: '请先同意用户协议与隐私政策', icon: 'none' });
+      return;
+    }
 
     if (!phone) {
       wx.showToast({ title: '请输入手机号', icon: 'none' });
